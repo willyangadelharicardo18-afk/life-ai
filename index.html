@@ -1,0 +1,445 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#070914">
+  <title>LIFE AI</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="splash" class="splash">
+    <div class="robot-art splash-robot">
+      <svg viewBox="0 0 300 330" role="img" aria-label="Robô LIFE AI">
+        <defs>
+          <linearGradient id="metal" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#f4f5ff"/>
+            <stop offset=".45" stop-color="#7885b5"/>
+            <stop offset="1" stop-color="#242b50"/>
+          </linearGradient>
+          <linearGradient id="visor" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#10152e"/>
+            <stop offset="1" stop-color="#02040d"/>
+          </linearGradient>
+        </defs>
+        <ellipse cx="150" cy="310" rx="100" ry="12" fill="#00c8ff" opacity=".2"/>
+        <path d="M75 205 Q40 210 35 270 L55 300 Q90 305 115 280 L120 220Z" fill="url(#metal)" stroke="#7d8cff" stroke-width="4"/>
+        <path d="M225 205 Q260 210 265 270 L245 300 Q210 305 185 280 L180 220Z" fill="url(#metal)" stroke="#7d8cff" stroke-width="4"/>
+        <path d="M95 185 Q150 165 205 185 L220 290 Q150 320 80 290Z" fill="url(#metal)" stroke="#8e9dff" stroke-width="4"/>
+        <path d="M125 190 L150 220 L175 190" fill="none" stroke="#28345e" stroke-width="8"/>
+        <rect x="118" y="225" width="64" height="48" rx="15" fill="#080b20" stroke="#9b62ff" stroke-width="3"/>
+        <path d="M132 250 Q150 230 168 250 Q150 270 132 250Z" fill="none" stroke="#00d8ff" stroke-width="4"/>
+        <rect x="125" y="145" width="50" height="42" rx="15" fill="url(#metal)" stroke="#7b8bce" stroke-width="3"/>
+        <path d="M80 55 Q80 10 150 10 Q220 10 220 55 L230 140 Q225 185 150 190 Q75 185 70 140Z" fill="url(#metal)" stroke="#a2aaff" stroke-width="5"/>
+        <rect x="80" y="45" width="140" height="125" rx="48" fill="url(#visor)" stroke="#5867a8" stroke-width="5"/>
+        <path d="M105 105 Q120 85 137 105" fill="none" stroke="#00d9ff" stroke-width="8" stroke-linecap="round"/>
+        <path d="M163 105 Q180 85 195 105" fill="none" stroke="#00d9ff" stroke-width="8" stroke-linecap="round"/>
+        <path d="M115 140 Q150 160 185 140" fill="none" stroke="#9255ff" stroke-width="4" stroke-linecap="round"/>
+        <ellipse cx="65" cy="110" rx="18" ry="38" fill="url(#metal)" stroke="#00c8ff" stroke-width="4"/>
+        <ellipse cx="235" cy="110" rx="18" ry="38" fill="url(#metal)" stroke="#9255ff" stroke-width="4"/>
+        <circle cx="65" cy="110" r="9" fill="#00d8ff"/>
+        <circle cx="235" cy="110" r="9" fill="#a56aff"/>
+        <path d="M105 30 Q150 -5 195 30" fill="none" stroke="#00c8ff" stroke-width="5" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <h1>LIFE <span>AI</span></h1>
+    <p>Seu Assistente Inteligente Pessoal</p>
+    <div class="loader"></div>
+  </div>
+
+  <header class="topbar">
+    <button class="icon-btn" onclick="toggleMenu()" aria-label="Menu">☰</button>
+    <div class="brand"><span class="brand-mark">◇</span> LIFE <span>AI</span></div>
+    <button class="profile-btn" onclick="openProfile()" aria-label="Perfil"><img id="topAvatar" alt="" hidden><span id="topAvatarFallback">♙</span></button>
+  </header>
+
+  <aside id="sideMenu" class="side-menu">
+    <button onclick="openPage('home')">Início</button>
+    <button onclick="openPage('assistant')">Conversar</button>
+    <button onclick="openPage('finance')">Finance & Data</button>
+    <button onclick="openPage('agenda')">Agenda inteligente</button>
+    <button onclick="openPage('habits')">Hábitos e Metas</button>
+    <button onclick="openPage('notes')">Bloco de Notas</button>
+    <button onclick="openPage('focus')">Foco e Produtividade</button>
+    <button onclick="openPage('dashboard')">Painel Pessoal</button>
+    <button onclick="openPage('profilePage')">Meu perfil</button>
+    <button onclick="openPage('settings')">Configurações</button>
+    <button onclick="closeMenu()">Fechar menu</button>
+  </aside>
+
+  <main id="app">
+
+    <section id="home" class="page active">
+      <div class="home-heading">
+        <p>Seu Assistente Inteligente Pessoal</p>
+      </div>
+
+      <div class="hero-robot">
+        <div class="robot-glow"></div>
+        <div class="main-robot">
+          <img src="assets/lifeai-robot.webp" alt="Robô 3D oficial do LIFE AI" class="robot-render">
+        </div>
+      </div>
+
+      <div class="greeting">
+        <strong id="homeGreeting">Olá!</strong> Como posso te ajudar hoje?
+      </div>
+
+      <div class="home-grid">
+        <button class="home-card" onclick="openPage('assistant')">
+          <span class="card-icon cyan"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M20 22h24c8 0 13 6 13 14v9c0 6-6 9-11 5l-8-7H26l-8 7c-5 4-11 1-11-5v-9c0-8 5-14 13-14z"/><path d="M21 31v12M15 37h12M43 33h.1M49 40h.1"/></svg></span>
+          <strong>Conversar</strong>
+          <small>Tire dúvidas, peça ideias e muito mais</small>
+        </button>
+        <button class="home-card" onclick="openPage('content')">
+          <span class="card-icon purple"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 6 58 20 32 34 6 20zM14 29v18l18 11 18-11V29M32 34v24"/></svg></span>
+          <strong>Criar Conteúdo</strong>
+          <small>Roteiros, textos, legendas e ideias</small>
+        </button>
+        <button class="home-card" onclick="openPage('tools')">
+          <span class="card-icon violet"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="m32 7 25 13-25 13L7 20zM7 32l25 13 25-13M7 44l25 13 25-13"/></svg></span>
+          <strong>Ferramentas</strong>
+          <small>Utilitários inteligentes para o seu dia</small>
+        </button>
+        <button class="home-card" onclick="openPage('tasks')">
+          <span class="card-icon blue"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="9" y="13" width="46" height="43" rx="5"/><path d="M20 6v14M44 6v14M9 26h46M22 39l7 7 14-15"/></svg></span>
+          <strong>Organizar</strong>
+          <small>Tarefas, lembretes e planejamento</small>
+        </button>
+        <button class="home-card" onclick="openPage('study')">
+          <span class="card-icon purple">♙</span>
+          <strong>Aprender</strong>
+          <small>Estudos, resumos e explicações</small>
+        </button>
+        <button class="home-card" onclick="openPage('fun')">
+          <span class="card-icon cyan">✦</span>
+          <strong>Diversão</strong>
+          <small>Jogos, histórias e curiosidades</small>
+        </button>
+      </div>
+
+      <div class="panel personal-shortcuts"><p class="eyebrow">SUA VIDA EM ORDEM</p><h3>Central pessoal</h3><div class="tool-shortcut-grid"><button onclick="openPage('agenda')">▦<span>Agenda inteligente</span></button><button onclick="openPage('habits')">◈<span>Hábitos e Metas</span></button><button onclick="openPage('notes')">▤<span>Bloco de Notas</span></button><button onclick="openPage('focus')">◷<span>Foco e Produtividade</span></button><button onclick="openPage('dashboard')">▥<span>Painel Pessoal</span></button></div></div>
+
+      <form class="home-chat" onsubmit="sendHomeMessage(event)">
+        <span class="sparkle">✧</span>
+        <input id="homeMessage" placeholder="Digite sua mensagem..." autocomplete="off">
+        <button type="submit" aria-label="Enviar mensagem">➤</button>
+      </form>
+    </section>
+
+    <section id="assistant" class="page">
+      <h2>Conversar</h2>
+      <div class="assistant-panel">
+        <div class="robot-art mini-robot">
+          <svg viewBox="0 0 300 330" aria-label="Robô LIFE AI">
+            <use href="#robotTemplate"></use>
+          </svg>
+        </div>
+        <h3>Olá! Sou o LIFE AI.</h3>
+        <p class="muted">A conexão com o modelo Gemma ainda será integrada. Esta tela não simula respostas de IA.</p>
+      </div>
+    </section>
+
+    <section id="finance" class="page">
+      <div class="page-heading">
+        <div>
+          <p class="eyebrow">CONTROLE FINANCEIRO</p>
+          <h2>Finance & Data</h2>
+        </div>
+      </div>
+      <p class="muted">Cada projeto possui seus próprios lançamentos e relatórios.</p>
+      <div class="create-row">
+        <input id="financeName" placeholder="Nome do projeto financeiro">
+        <button class="primary" onclick="addFinance()">＋ Criar</button>
+      </div>
+      <div id="financeProjects" class="finance-project-grid"></div>
+    </section>
+
+    <section id="financeDetail" class="page">
+      <div class="page-heading">
+        <div>
+          <p class="eyebrow">PROJETO FINANCEIRO</p>
+          <h2 id="financeDetailTitle">Meu projeto</h2>
+        </div>
+        <button class="small-action" onclick="openPage('finance')">Meus projetos</button>
+      </div>
+
+      <div class="finance-summary">
+        <div class="balance-card">
+          <span>Saldo atual</span>
+          <strong id="detailBalance">R$ 0,00</strong>
+        </div>
+        <div class="summary-pair">
+          <div class="summary-box">
+            <span>Receitas</span>
+            <strong id="detailIncome">R$ 0,00</strong>
+          </div>
+          <div class="summary-box">
+            <span>Despesas</span>
+            <strong id="detailExpenses">R$ 0,00</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>Novo lançamento</h3>
+        <form id="financeEntryForm" onsubmit="submitFinanceEntry(event)">
+          <label for="entryDescription">Descrição</label>
+          <input id="entryDescription" placeholder="Ex.: Venda, salário, mercado..." required>
+          <div class="form-two">
+            <div>
+              <label for="entryValue">Valor (R$)</label>
+              <input id="entryValue" type="number" min="0.01" step="0.01" placeholder="0,00" required>
+            </div>
+            <div>
+              <label for="entryDate">Data</label>
+              <input id="entryDate" type="date" required>
+            </div>
+          </div>
+          <label for="entryCategory">Categoria</label>
+          <select id="entryCategory">
+            <option>Outros</option>
+            <option>Salário</option>
+            <option>Vendas</option>
+            <option>Alimentação</option>
+            <option>Moradia</option>
+            <option>Transporte</option>
+            <option>Saúde</option>
+            <option>Educação</option>
+            <option>Lazer</option>
+            <option>Investimentos</option>
+            <option>Contas</option>
+          </select>
+          <label>Tipo de lançamento</label>
+          <div class="type-switch">
+            <label><input type="radio" name="entryType" value="income" checked> Receita</label>
+            <label><input type="radio" name="entryType" value="expense"> Despesa</label>
+          </div>
+          <button class="primary" type="submit">Salvar lançamento</button>
+        </form>
+      </div>
+
+      <div class="panel">
+        <h3>Visão geral</h3>
+        <div class="chart-switcher"><button class="chart-tab active" onclick="selectChart('bar')">Barras</button><button class="chart-tab" onclick="selectChart('pie')">Pizza</button><button class="chart-tab" onclick="selectChart('ring')">Circular</button></div>
+        <div class="chart-grid">
+          <div class="chart-box" id="barChartBox">
+            <p class="chart-title">Receitas x despesas</p>
+            <canvas id="financeBarChart" height="220"></canvas>
+          </div>
+          <div class="chart-box" id="pieChartBox">
+            <p class="chart-title">Visão geral</p>
+            <div class="pie-mode-switch">
+              <button type="button" class="pie-mode-btn active" onclick="setPieMode('overview')">Visão Geral</button>
+              <button type="button" class="pie-mode-btn" onclick="setPieMode('category')">Por Categorias</button>
+            </div>
+            <canvas id="financePieChart" height="260"></canvas>
+          </div>
+        </div>
+        <div class="chart-box ring-chart-box" id="ringChartBox"><p class="chart-title">Receitas x despesas</p><canvas id="financeRingChart" height="220"></canvas></div>
+        <div id="chartLegend" class="chart-legend"></div>
+      </div>
+
+      <div class="panel">
+        <div class="list-heading">
+          <h3>Extrato de lançamentos</h3>
+          <select id="entryFilter" onchange="renderFinanceDetail()">
+            <option value="all">Todos</option>
+            <option value="income">Receitas</option>
+            <option value="expense">Despesas</option>
+          </select>
+        </div>
+        <div id="financeEntries"></div>
+      </div>
+      <button class="danger-button" onclick="deleteCurrentFinance()">Excluir projeto financeiro</button>
+    </section>
+
+    <section id="agenda" class="page module-page"><div class="page-heading"><div><p class="eyebrow">PLANEJAMENTO PESSOAL</p><h2>Agenda inteligente</h2></div><button class="small-action" onclick="openPage('home')">Início</button></div><div class="module-stats" id="agendaStats"></div><div class="panel"><h3>Novo compromisso</h3><div class="form-two"><input id="agendaTitle" placeholder="Título do compromisso"><select id="agendaCategory"><option>Pessoal</option><option>Trabalho</option><option>Estudo</option><option>Saúde</option><option>Outro</option></select></div><div class="form-two"><input id="agendaDate" type="date"><input id="agendaTime" type="time"></div><div class="form-two"><select id="agendaPriority"><option value="Normal">Prioridade normal</option><option value="Alta">Prioridade alta</option><option value="Baixa">Prioridade baixa</option></select><select id="agendaRepeat"><option value="none">Não repetir</option><option value="daily">Todos os dias</option><option value="weekly">Toda semana</option><option value="monthly">Todo mês</option></select></div><textarea id="agendaDetails" placeholder="Observações (opcional)"></textarea><button class="primary" onclick="addAgendaEvent()">＋ Salvar compromisso</button></div><div class="panel"><div class="list-heading"><h3>Calendário e compromissos</h3><input id="agendaFilterDate" type="month" onchange="renderAgenda()"></div><div id="agendaCalendar" class="calendar-grid"></div><div id="agendaList"></div></div></section>
+
+    <section id="habits" class="page module-page"><div class="page-heading"><div><p class="eyebrow">CONSISTÊNCIA E EVOLUÇÃO</p><h2>Hábitos e Metas</h2></div></div><div id="habitOverview" class="module-stats"></div><div class="panel"><h3>Criar hábito ou meta</h3><input id="habitTitle" placeholder="Ex.: Ler 20 minutos por dia"><div class="form-two"><select id="habitType"><option value="habit">Hábito</option><option value="goal">Meta</option></select><select id="habitFrequency"><option value="daily">Todos os dias</option><option value="weekdays">Dias úteis</option><option value="weekly">Semanal</option></select></div><div class="form-two"><input id="habitTarget" type="number" min="1" value="1" placeholder="Meta numérica"><input id="habitUnit" placeholder="Unidade (ex.: páginas)"></div><button class="primary" onclick="addHabit()">＋ Adicionar</button></div><div id="habitList"></div></section>
+
+    <section id="notes" class="page module-page"><div class="page-heading"><div><p class="eyebrow">IDEIAS E REGISTROS</p><h2>Bloco de Notas</h2></div></div><div class="panel"><h3>Nova anotação</h3><input id="noteTitle" placeholder="Título da nota"><div class="form-two"><select id="noteCategory"><option>Pessoal</option><option>Trabalho</option><option>Estudos</option><option>Ideias</option><option>Lista</option></select><input id="noteDate" type="date"></div><textarea id="noteBody" rows="5" placeholder="Escreva sua anotação ou lista..."></textarea><label class="check-row"><input id="notePinned" type="checkbox"> Fixar esta nota</label><button class="primary" onclick="saveNote()">Salvar anotação</button></div><div class="panel"><div class="list-heading"><h3>Minhas anotações</h3><input id="noteSearch" placeholder="Pesquisar..." oninput="renderNotes()"></div><div class="form-two"><select id="noteFilter" onchange="renderNotes()"><option value="all">Todas as categorias</option><option>Pessoal</option><option>Trabalho</option><option>Estudos</option><option>Ideias</option><option>Lista</option></select><input id="noteMonth" type="month" onchange="renderNotes()"></div><div id="notesList"></div></div></section>
+
+    <section id="focus" class="page module-page"><div class="page-heading"><div><p class="eyebrow">TEMPO DE QUALIDADE</p><h2>Foco e Produtividade</h2></div></div><div class="panel focus-panel"><p class="eyebrow">SESSÃO POMODORO</p><div class="focus-mode"><button onclick="setFocusMode(25,5,'Pomodoro')">25 / 5</button><button onclick="setFocusMode(50,10,'Foco profundo')">50 / 10</button><button onclick="setFocusMode(15,3,'Sessão curta')">15 / 3</button></div><div id="focusClock">25:00</div><p id="focusStatus" class="muted">Pronto para começar?</p><input id="focusTask" placeholder="No que você vai focar?"><div class="focus-actions"><button class="primary" id="focusStart" onclick="toggleFocus()">Iniciar foco</button><button class="secondary-action" onclick="resetFocus()">Reiniciar</button></div></div><div id="focusStats" class="module-stats"></div><div class="panel"><h3>Histórico de sessões</h3><div id="focusHistory"></div></div></section>
+
+    <section id="dashboard" class="page module-page"><div class="page-heading"><div><p class="eyebrow">SUA VISÃO GERAL</p><h2>Painel Pessoal</h2></div><select id="dashboardPeriod" onchange="renderDashboard()"><option value="7">7 dias</option><option value="30">30 dias</option><option value="90">90 dias</option></select></div><div id="dashboardStats" class="dashboard-kpis"></div><div class="panel"><h3>Consistência dos hábitos</h3><div id="dashboardHabitChart" class="bar-chart"></div></div><div class="panel"><h3>Produtividade semanal</h3><div id="dashboardFocusChart" class="bar-chart"></div></div><div class="panel"><h3>Visão da rotina</h3><div id="dashboardSummary"></div></div></section>
+
+    <section id="tasks" class="page">
+      <h2>Organizar</h2>
+      <div class="panel">
+        <input id="listName" placeholder="Nome da lista">
+        <button class="primary" onclick="addTaskList()">Criar lista</button>
+      </div>
+      <div id="taskLists"></div>
+    </section>
+
+    <section id="projects" class="page">
+      <div class="page-heading"><div><p class="eyebrow">ORGANIZAÇÃO E PRODUTIVIDADE</p><h2>Meus projetos</h2></div></div>
+      <div class="panel">
+        <h3>Novo projeto</h3>
+        <input id="projectName" maxlength="70" placeholder="Nome do projeto">
+        <textarea id="projectNotes" maxlength="1200" placeholder="Objetivo, descrição ou anotações iniciais"></textarea>
+        <button class="primary" onclick="addProject()">＋ Criar projeto</button>
+      </div>
+      <div id="projectsList"></div>
+      <div id="projectWorkspace" class="panel" hidden></div>
+    </section>
+
+    <section id="study" class="page">
+      <h2>Aprender</h2>
+      <div class="panel">
+        <input id="studySubject" placeholder="O que deseja estudar?">
+        <input id="studyMinutes" type="number" min="1" placeholder="Minutos por dia">
+        <input id="studyDays" type="number" min="1" max="7" placeholder="Dias por semana">
+        <button class="primary" onclick="addStudy()">Criar plano</button>
+      </div>
+      <div id="studyList"></div>
+    </section>
+
+    <section id="tools" class="page">
+      <h2>Ferramentas</h2>
+      <div class="tool-tile" onclick="openPage('finance')">Finance & Data <span>›</span></div>
+      <div class="tool-tile" onclick="openPage('math')">Calculadora matemática <span>›</span></div>
+      <div class="tool-tile" onclick="openPage('projects')">Gerenciador de projetos <span>›</span></div><div class="tool-tile" onclick="openPage('agenda')">Agenda inteligente <span>›</span></div><div class="tool-tile" onclick="openPage('habits')">Hábitos e Metas <span>›</span></div><div class="tool-tile" onclick="openPage('notes')">Bloco de Notas <span>›</span></div><div class="tool-tile" onclick="openPage('focus')">Foco e Produtividade <span>›</span></div><div class="tool-tile" onclick="openPage('dashboard')">Painel Pessoal <span>›</span></div>
+    </section>
+
+    <section id="math" class="page">
+      <h2>LIFE AI Matemática</h2><div class="panel"><p class="eyebrow">MATEMÁTICA AVANÇADA</p><h3>5 utilizações gratuitas por dia</h3><p class="muted">A resolução avançada com inteligência artificial será ativada quando a integração do modelo estiver concluída.</p></div>
+      <div class="calculator-shell">
+        <div class="calculator-top"><span>CALCULADORA INTELIGENTE</span><span class="live-dot">●</span></div>
+        <div class="calculator-display"><div id="mathExpressionPreview" class="math-expression-preview">0</div><div id="mathResult" class="math-result">Resultado</div><input id="mathExpression" aria-label="Expressão matemática" placeholder="Use o teclado LIFE AI" autocomplete="off" readonly inputmode="none"></div>
+        <div class="math-keypad">
+          <button class="key utility" onclick="clearMath()">AC</button><button class="key utility" onclick="appendMath('(')">(</button><button class="key utility" onclick="appendMath(')')">)</button><button class="key operator" onclick="appendMath('/')">÷</button>
+          <button class="key" onclick="appendMath('7')">7</button><button class="key" onclick="appendMath('8')">8</button><button class="key" onclick="appendMath('9')">9</button><button class="key operator" onclick="appendMath('*')">×</button>
+          <button class="key" onclick="appendMath('4')">4</button><button class="key" onclick="appendMath('5')">5</button><button class="key" onclick="appendMath('6')">6</button><button class="key operator" onclick="appendMath('-')">−</button>
+          <button class="key" onclick="appendMath('1')">1</button><button class="key" onclick="appendMath('2')">2</button><button class="key" onclick="appendMath('3')">3</button><button class="key operator" onclick="appendMath('+')">+</button>
+          <button class="key utility" onclick="backspaceMath()">⌫</button><button class="key" onclick="appendMath('0')">0</button><button class="key" onclick="appendMath('.')">,</button><button class="key equals" onclick="calculate()">=</button>
+        </div>
+        <div class="calculator-history"><strong>Último cálculo</strong><span id="mathHistory">Nenhum cálculo ainda</span></div>
+      </div>
+      <div class="panel photo-math-panel"><div><p class="eyebrow">LEITURA DE EXERCÍCIOS</p><h3>Resolver por fotografia</h3><p class="muted">Escolha uma foto do exercício. A imagem poderá ser visualizada aqui; a resolução automática por IA será ativada quando o modelo multimodal for integrado ao Android.</p></div><label class="primary photo-pick">📷 Escolher foto<input id="mathPhoto" type="file" accept="image/*" capture="environment" onchange="previewMathPhoto(event)" hidden></label><img id="mathPhotoPreview" class="math-photo-preview" alt="Prévia do exercício" hidden><p id="mathPhotoStatus" class="muted"></p></div>
+    </section>
+
+    <section id="content" class="page">
+      <h2>Criar conteúdo</h2>
+      <div class="panel">
+        <p>Roteiros, textos, legendas e ideias.</p>
+        <p class="muted">A geração automática será ativada após a integração de IA.</p>
+      </div>
+    </section>
+
+    <section id="fun" class="page">
+      <h2>Diversão</h2>
+      <div class="panel">
+        <p class="eyebrow">DESCUBRA ALGO NOVO</p><h3>Curiosidade</h3>
+        <p id="funText">Descubra algo novo.</p>
+        <button class="primary" onclick="randomFun()">Nova curiosidade</button>
+      </div>
+      <div class="panel"><p class="eyebrow">JOGO RÁPIDO</p><h3>Jogo da memória</h3><p class="muted">Encontre os pares. O jogo funciona sem internet.</p><div id="memoryGame" class="memory-grid"></div><p id="memoryStatus" class="muted">Encontre todos os pares!</p><button class="secondary-action" onclick="startMemoryGame()">Novo jogo</button></div>
+      <div class="panel"><h3>Mais novidades</h3><p class="muted">Estamos preparando novos jogos, desafios e experiências para as próximas atualizações do LIFE AI.</p></div>
+    </section>
+
+    <section id="settings" class="page">
+      <h2>Personalização</h2>
+      <div class="panel">
+        <h3>Temas gratuitos</h3>
+        <div class="theme-grid">
+          <button class="theme-choice" onclick="changeTheme('futuristic')"><i class="theme-dot futuristic-dot"></i>Futurista <small>Grátis</small></button>
+          <button class="theme-choice" onclick="changeTheme('midnight')"><i class="theme-dot midnight-dot"></i>Meia-noite <small>Grátis</small></button>
+          <button class="theme-choice" onclick="changeTheme('light')"><i class="theme-dot light-dot"></i>Claro <small>Grátis</small></button>
+          <button class="theme-choice" onclick="changeTheme('forest')"><i class="theme-dot forest-dot"></i>Floresta <small>Grátis</small></button>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="premium-heading">
+          <div>
+            <p class="eyebrow">LIFE AI PREMIUM</p>
+            <h3>Temas exclusivos</h3>
+          </div>
+          <span class="premium-tag">PRO / VIP</span>
+        </div>
+        <div class="theme-grid">
+          <button class="theme-choice locked" onclick="showPremiumNotice('Aurora')"><i class="theme-dot aurora-dot"></i>Aurora <small>♛ Premium</small></button>
+          <button class="theme-choice locked" onclick="showPremiumNotice('Ouro')"><i class="theme-dot gold-dot"></i>Ouro <small>♛ Premium</small></button>
+          <button class="theme-choice locked" onclick="showPremiumNotice('Rubi')"><i class="theme-dot ruby-dot"></i>Rubi <small>♛ Premium</small></button>
+          <button class="theme-choice locked" onclick="showPremiumNotice('Safira')"><i class="theme-dot sapphire-dot"></i>Safira <small>♛ Premium</small></button>
+          <button class="theme-choice locked" onclick="showPremiumNotice('Galáxia')"><i class="theme-dot galaxy-dot"></i>Galáxia <small>♛ Premium</small></button>
+          <button class="theme-choice locked" onclick="showPremiumNotice('Cyberpunk')"><i class="theme-dot cyber-dot"></i>Cyberpunk <small>♛ Premium</small></button>
+          <button class="theme-choice locked" onclick="showPremiumNotice('Rosa Neon')"><i class="theme-dot pink-dot"></i>Rosa Neon <small>♛ Premium</small></button>
+          <button class="theme-choice locked" onclick="showPremiumNotice('Ártico')"><i class="theme-dot arctic-dot"></i>Ártico <small>♛ Premium</small></button>
+          <button class="theme-choice locked" onclick="showPremiumNotice('Vulcão')"><i class="theme-dot volcano-dot"></i>Vulcão <small>♛ Premium</small></button>
+          <button class="theme-choice locked" onclick="showPremiumNotice('Esmeralda')"><i class="theme-dot emerald-dot"></i>Esmeralda <small>♛ Premium</small></button>
+          <button class="theme-choice locked" onclick="showPremiumNotice('Prata')"><i class="theme-dot silver-dot"></i>Prata <small>♛ Premium</small></button>
+          <button class="theme-choice locked" onclick="showPremiumNotice('Holograma')"><i class="theme-dot holo-dot"></i>Holograma <small>♛ Premium</small></button>
+        </div>
+      </div>
+
+      <div class="panel"><h3>Personalização avançada</h3><div class="theme-grid"><button class="theme-choice locked" onclick="showPremiumNotice('Cores personalizadas')">🎨 Cores personalizadas <small>PRO / VIP · Em breve</small></button><button class="theme-choice locked" onclick="showPremiumNotice('Foto de fundo')">▧ Foto de fundo <small>PRO / VIP · Em breve</small></button></div></div>
+      <div class="panel premium-plan">
+        <p class="eyebrow">PLANOS LIFE AI</p>
+        <h3>Desbloqueie mais possibilidades</h3>
+        <div class="plan-row"><strong>Gratuito</strong><span>R$ 0,00</span></div>
+        <div class="plan-row"><strong>PRO</strong><span>R$ 9,90/mês</span></div>
+        <div class="plan-row"><strong>VIP</strong><span>R$ 19,90/mês</span></div>
+        <div class="plan-benefits"><h4>O que cada plano oferecerá</h4><p><b>Gratuito:</b> ferramentas essenciais, organização, projetos e 5 usos diários da matemática avançada.</p><p><b>PRO:</b> temas exclusivos, personalização avançada e limites ampliados.</p><p><b>VIP:</b> todos os benefícios PRO, recursos avançados e vantagens adicionais.</p></div>
+        <p class="muted">Os planos PRO e VIP estão apresentados para consulta. A compra e a ativação de assinaturas estão desativadas nesta versão; serão conectadas ao Google Play Billing em uma atualização posterior. Outros recursos também estão sendo preparados.</p>
+      </div>
+      <div class="panel"><h3>Enviar feedback</h3><p class="muted">Conte o que podemos melhorar ou relate possíveis erros.</p><form onsubmit="sendFeedback(event)"><select id="feedbackType"><option>Sugestão de melhoria</option><option>Possível erro</option><option>Dificuldade de uso</option><option>Outro assunto</option></select><textarea id="feedbackMessage" placeholder="Escreva sua mensagem..." required></textarea><input id="supportEmail" type="email" placeholder="E-mail de suporte (configurar depois)"><button class="primary" type="submit">Enviar feedback por e-mail</button></form><p class="muted">O envio abrirá seu aplicativo de e-mail. O endereço oficial poderá ser configurado quando você o definir.</p></div>
+      <div class="panel"><h3>Sobre e ajuda</h3><p class="muted">LIFE AI · Sua central inteligente para organizar, aprender e criar.</p><button class="secondary-action" onclick="replayOnboarding()">Ver apresentação inicial</button><button class="secondary-action" onclick="openPage('legal')">Termos e privacidade</button><button class="secondary-action" onclick="rateApp()">Avaliar na Play Store</button></div>
+    </section>
+
+  </main>
+
+  <section id="profilePage" class="page standalone-page">
+    <div class="page-heading"><div><p class="eyebrow">MINHA CONTA LOCAL</p><h2>Meu perfil</h2></div><button class="small-action" onclick="openPage('home')">Voltar</button></div>
+    <div class="panel profile-editor"><img id="profileAvatarPreview" class="profile-avatar" src="" alt="Foto do perfil"><label class="primary photo-pick">Adicionar foto<input id="profilePhoto" type="file" accept="image/*" onchange="saveProfilePhoto(event)" hidden></label><label for="profileName">Seu nome</label><input id="profileName" maxlength="40" placeholder="Como podemos chamar você?"><button class="primary" onclick="saveProfile()">Salvar perfil</button><p class="muted">Seu nome e sua foto ficam salvos neste aparelho. Cadastro e sincronização entre aparelhos serão implementados futuramente.</p></div>
+  </section>
+  <section id="legal" class="page standalone-page">
+    <div class="page-heading"><div><p class="eyebrow">INFORMAÇÕES LEGAIS</p><h2>Sobre o LIFE AI</h2></div><button class="small-action" onclick="openPage('settings')">Voltar</button></div>
+    <div class="panel">
+      <h3>Termos de uso</h3>
+      <p>O LIFE AI é uma ferramenta de organização, aprendizagem, produtividade e apoio a atividades cotidianas. Ao utilizar o aplicativo, a pessoa concorda em usá-lo de forma lícita e responsável.</p>
+      <p>Os resultados de cálculos, textos e demais ferramentas devem ser conferidos pelo usuário quando forem utilizados em decisões importantes. O aplicativo não substitui orientação profissional, financeira, jurídica, médica ou educacional especializada.</p>
+      <p>O responsável pelo aplicativo deverá manter esta página atualizada com sua identificação, canais de contato, condições de uso e informações de distribuição antes da publicação pública.</p>
+      <h3>Privacidade e dados</h3>
+      <p>Nesta versão, nome, foto de perfil, projetos, tarefas, planos de estudo, histórico de cálculos e lançamentos financeiros são armazenados localmente no dispositivo, por meio do armazenamento do aplicativo/navegador. Não há cadastro, conta ou sincronização em nuvem implementados.</p>
+      <p>Quem utiliza o aplicativo deve proteger o próprio aparelho e realizar cópias de segurança quando necessário. Limpar os dados do aplicativo, desinstalá-lo ou perder o dispositivo pode apagar informações locais.</p>
+      <p>Quando o usuário escolhe compartilhar conteúdo, abrir o aplicativo de e-mail ou utilizar recursos externos, o tratamento também poderá depender do serviço escolhido. Recursos de IA online, pagamentos e sincronização não estão ativos nesta versão.</p>
+      <h3>Permissões e fotos</h3>
+      <p>O acesso à galeria ou câmera só é solicitado quando o usuário escolhe adicionar uma foto de perfil ou selecionar uma imagem de exercício. As imagens selecionadas podem ser armazenadas localmente para exibição no aplicativo.</p>
+      <h3>Propriedade intelectual</h3>
+      <p>O nome, a identidade visual, os textos, os elementos gráficos e o código do LIFE AI pertencem aos respectivos titulares ou licenciantes. Componentes, bibliotecas, fontes, ícones e tecnologias de terceiros permanecem sujeitos às suas próprias licenças. A identificação do titular e os avisos de licença devem ser conferidos e completados antes da publicação.</p>
+      <h3>Suporte e contato</h3>
+      <p>Para sugestões, dúvidas ou comunicação de possíveis erros, utilize a área Enviar feedback nas configurações. O envio abre o aplicativo de e-mail do dispositivo e depende de um endereço de suporte válido configurado pelo responsável.</p>
+      <h3>Planos e pagamentos</h3>
+      <p>As opções Gratuito, PRO e VIP são exibidas para apresentar os recursos planejados. A compra, cobrança, assinatura e ativação automática dos planos não estão habilitadas nesta versão.</p>
+      <h3>Versão e atualização</h3>
+      <p>LIFE AI — versão de desenvolvimento. Este texto é uma base informativa e deverá ser revisado e completado pelo responsável antes da distribuição na Google Play, incluindo dados de contato e eventuais serviços integrados.</p>
+    </div>
+  </section>
+  <div id="onboarding" class="onboarding-overlay" hidden><div class="onboarding-card"><button class="onboarding-skip" onclick="finishOnboarding()">Pular</button><div class="onboarding-icon" id="onboardingIcon">✦</div><p class="eyebrow" id="onboardingStep">APRESENTAÇÃO 1 DE 5</p><h2 id="onboardingTitle">Bem-vindo ao LIFE AI</h2><p id="onboardingText">Seu espaço para organizar, aprender e criar.</p><div class="onboarding-dots" id="onboardingDots"></div><div class="onboarding-actions"><button class="secondary-action" id="onboardingBack" onclick="previousOnboarding()" disabled>Voltar</button><button class="primary" id="onboardingNext" onclick="nextOnboarding()">Continuar</button></div></div></div>
+
+  <nav class="bottom-nav">
+    <button class="nav-item active" onclick="openPage('home')"><span>⌂</span>Início</button>
+    <button class="nav-item" onclick="openPage('assistant')"><span>▱</span>Chat</button>
+    <button class="nav-item" onclick="openPage('tools')"><span>▦</span>Ferramentas</button>
+    <button class="nav-item" onclick="openPage('projects')"><span>▱</span>Projetos</button>
+    <button class="nav-item" onclick="openPage('settings')"><span>⚙</span>Configurações</button>
+  </nav>
+
+  <div id="profileModal" class="modal"><div class="panel"><h2>Perfil</h2><p class="muted">Personalize seu perfil neste aparelho.</p><button class="primary" onclick="closeProfile();openPage('profilePage')">Abrir meu perfil</button><button class="secondary-action" onclick="closeProfile()">Fechar</button></div></div>
+
+  <div id="noticeModal" class="modal">
+    <div class="panel">
+      <h2 id="noticeTitle">Recurso Premium</h2>
+      <p id="noticeText">Este tema fará parte dos planos PRO e VIP.</p>
+      <button class="primary" onclick="closeNotice()">Entendi</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
